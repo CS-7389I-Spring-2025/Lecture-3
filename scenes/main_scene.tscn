@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bx4w8lmw3lqpr"]
+
+[ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_lngdl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u0m1h"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_spww3"]
+sky_material = SubResource("ProceduralSkyMaterial_u0m1h")
+
+[sub_resource type="Environment" id="Environment_pq44o"]
+background_mode = 2
+sky = SubResource("Sky_spww3")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtb0o"]
+albedo_color = Color(0.129412, 0.0980392, 1, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_lngdl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pq44o")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -0.5, 0)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5.4878)
+material = SubResource("StandardMaterial3D_vtb0o")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
